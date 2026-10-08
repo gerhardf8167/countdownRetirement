@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173f36">
+  <title>Abwesenheiten | Countdown</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./absences.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./index.html">Countdown<span>2026</span></a>
+    <nav aria-label="Hauptnavigation">
+      <a href="./index.html">Countdown</a>
+      <a href="./abwesenheiten.html" aria-current="page">Abwesenheiten</a>
+    </nav>
+    <button class="install-button" data-install hidden>Installieren</button>
+  </header>
+  <main class="management-main">
+    <div class="eyebrow">Dein Kalender</div>
+    <h1>Abwesenheiten</h1>
+    <div class="management-layout">
+      <section class="entry-section" aria-labelledby="entry-title">
+        <h2 id="entry-title">Zeitraum eintragen</h2>
+        <form id="absence-form">
+          <label for="start-date">Von</label>
+          <input id="start-date" type="date" min="1900-01-01" max="2100-12-31" required>
+          <label for="end-date">Bis</label>
+          <input id="end-date" type="date" min="1900-01-01" max="2100-12-31" required>
+          <label for="note">Bezeichnung</label>
+          <input id="note" type="text" maxlength="100" placeholder="z. B. Urlaub oder Feiertag">
+          <button class="primary" type="submit" disabled>Speichern</button>
+        </form>
+        <div class="backup-actions">
+          <button id="import-button" type="button" disabled>CSV importieren</button>
+          <button id="export-button" type="button" disabled>CSV exportieren</button>
+          <input id="csv-file" type="file" accept=".csv,text/csv,text/plain" hidden>
+        </div>
+      </section>
+      <section class="list-section" aria-labelledby="list-title">
+        <div class="list-heading"><h2 id="list-title">Gespeicherte Tage</h2><span id="record-count">--</span></div>
+        <label class="filter-label" for="date-filter">Zeitraum</label>
+        <select id="date-filter"><option value="all">Alle Eintr&auml;ge</option><option value="upcoming">Ab heute</option></select>
+        <p id="empty-state" hidden>Keine Abwesenheiten in diesem Zeitraum.</p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th scope="col">Datum</th><th scope="col">Bezeichnung</th><th scope="col"><span class="sr-only">Aktionen</span></th></tr></thead>
+            <tbody id="absence-list"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+    <p class="status" id="status" role="status" aria-live="polite">Daten werden geladen …</p>
+  </main>
+  <footer class="management-footer">31.12.2026 <span>Countdown</span></footer>
+</body>
+</html>

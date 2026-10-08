@@ -1,68 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <title>PWA Starter</title>
-
-  <base href="/" />
-
-  <!-- This meta viewport ensures the webpage's dimensions change according to the device it's on. This is called Responsive Web Design.-->
-  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-  <meta name="description" content="This is a PWA Starter app" />
-
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#181818" />
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f3f3" />
-
-  <!-- These meta tags are Apple-specific, and set the web application to run in full-screen mode with a black status bar. Learn more at https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html-->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="PWA Starter" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-
-  <!-- This tag is used by the PWA Starter CLI to identify template projects. Don't remove if you are using the CLI. -->
-  <meta name="pwa-starter-template-identity" content="pwa-starter" />
-
-  <!-- Imports an icon to represent the document. -->
-  <link rel="icon" href="/assets/icons/icon_24.png" type="image/png" />
-
-  <!-- Imports the manifest to represent the web application. A web app must have a manifest to be a PWA. -->
-  <link rel="manifest" href="manifest.json" />
-
-  <!-- Web Awesome global styles / theme -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@awesome.me/webawesome@3.10.0/dist/styles/webawesome.css" />
-  <link rel="stylesheet" href="global.css" />
-
-
-  <!-- Web Awesome uses class-based color schemes. Track the OS preference. -->
-  <script>
-    (() => {
-      const root = document.documentElement;
-      const media = window.matchMedia('(prefers-color-scheme: dark)');
-      const applyScheme = (isDark) => {
-        root.classList.toggle('wa-dark', isDark);
-        root.classList.toggle('wa-light', !isDark);
-      };
-      applyScheme(media.matches);
-      media.addEventListener('change', (event) => applyScheme(event.matches));
-    })();
-  </script>
-
-  <script type="module" src="/src/app-index.ts"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173f36">
+  <meta name="description" content="Dein Countdown bis zum 31. Dezember 2026.">
+  <title>Countdown | 31.12.2026</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
 </head>
-
-<body>
-  <!-- Our app-index web component. This component is defined in src/pages/app-index.ts-->
-  <app-index></app-index>
-
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.onload = () => {
-        navigator.serviceWorker.register(
-          '/sw.js'
-        );
-      }
-    }
-  </script>
+<body class="countdown-page">
+  <header class="site-header">
+    <a class="brand" href="./index.html">Countdown<span>2026</span></a>
+    <nav aria-label="Hauptnavigation">
+      <a href="./index.html" aria-current="page">Countdown</a>
+      <a href="./abwesenheiten.html">Abwesenheiten</a>
+    </nav>
+    <button class="install-button" data-install hidden>Installieren</button>
+  </header>
+  <main class="countdown-main">
+    <div class="eyebrow">Das Ziel im Blick</div>
+    <h1>31. Dezember<br>2026</h1>
+    <div class="calendar-count"><strong id="calendar-days">--</strong><span>Kalendertage<br>bis zum Ziel</span></div>
+    <section class="work-count" aria-label="Verbleibende Arbeitszeit">
+      <div><span class="metric-label">Arbeitstage nach heute</span><strong id="workdays">--</strong></div>
+      <div><span class="metric-label">Restarbeitszeit heute</span><strong id="today-time" role="timer">--:--:--</strong></div>
+    </section>
+    <div class="countdown-details">
+      <p>Arbeitszeit <strong>08:30 – 16:30</strong></p>
+      <p id="next-absence">Abwesenheiten werden geladen …</p>
+    </div>
+    <p class="status" id="status" role="status"></p>
+  </main>
+  <footer class="countdown-footer"><span>Ein Tag weniger. Ein Schritt weiter.</span><span id="current-date"></span></footer>
 </body>
-
 </html>

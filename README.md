@@ -1,6 +1,12 @@
 # Countdown PWA
 
-Statische, deutschsprachige Progressive Webapp der Python-Anwendung. Keine API,
+Anzeige der Tage bis Retirement. 
+-Anzahl Tage bis Enddatum 31.12.2026
+-Anzahl Arbeitstage bis Enddatum, abzüglich Samstage + Sonntage. 
+Sonstige freien Tage können in einem csv File importiert/exportiert werden oder über ein User-Interface gepflegt werden.
+Initial werden die freien Tage über csv FIle im RFepository befüllt. Die Daten werden dann im Browser im Webstorage hinterlegt.
+
+Statische, deutschsprachige Progressive Webapp. Keine API,
 kein Backend, keine externen Schriften, CDNs oder Analysedienste.
 
 ## Starten
